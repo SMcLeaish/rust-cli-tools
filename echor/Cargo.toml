@@ -4,4 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-clap = "4.5.27"
+clap = { version = "4.5.27", features = ["derive"] }
+
+[dev-dependencies]
+anyhow = "1.0.79"
+assert_cmd = "2.0.13"
+predicates = "3.0.4"
+pretty_assertions = "1.4.0"
