@@ -1,3 +1,6 @@
-fn main() {
-    println!("Hello, world!");
+#[derive(Debug)]
+struct Args {
+    files: Vec<String>,
+    lines: u64,
+    bytes: Option<u64>,
 }
