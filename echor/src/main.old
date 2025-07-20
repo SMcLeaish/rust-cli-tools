@@ -1,10 +1,9 @@
 use clap::{Arg, ArgAction, Command};
-
 fn main() {
-    let matches = Command::new("echor")
+    let matches = (Command::new("echor"))
         .version("0.1.0")
-        .author("Sean McLeaish <smcleaish@gmail.com>")
-        .about("A rust version of `echo`")
+        .author("me")
+        .about("Rust echo")
         .arg(
             Arg::new("text")
                 .value_name("TEXT")
