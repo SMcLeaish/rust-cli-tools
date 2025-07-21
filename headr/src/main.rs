@@ -14,6 +14,7 @@ struct Args {
     #[arg(short('n'), long("lines"), default_value = "10")]
     lines: u64,
     /// Print n bytes
+    #[arg(short('b'), long("bytes"), num_args(0..))]
     bytes: Option<u64>,
 }
 
