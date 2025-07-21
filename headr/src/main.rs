@@ -1,7 +1,4 @@
-use anyhow::Result;
 use clap::Parser;
-use std::fs::File;
-use std::io::{self, BufRead, BufReader};
 
 #[derive(Debug, Parser)]
 #[command(author, version, about)]
