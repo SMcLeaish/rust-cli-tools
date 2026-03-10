@@ -1,5 +1,3 @@
-use std::fs::read_to_string;
-
 use anyhow::Result;
 use assert_cmd::Command;
 use predicates::prelude::*;
@@ -13,14 +11,10 @@ fn dies_no_args() -> Result<()> {
     Ok(())
 }
 
-fn run(args: &[&str], expected_file: &str) -> Result<()> {
-    let expected = read_to_string(expected_file)?;
-    let output = Command::cargo_bin("echor")?
-        .args(args)
-        .output()
-        .expect("fail");
-    let stdout = String::from_utf8(output.stdout).expect("invalid UTF-8");
-    assert_eq!(stdout, expected);
+#[test]
+fn runs() -> Result<()> {
+    let mut cmd = Command::cargo_bin("echor")?;
+    cmd.arg("hello").assert().success();
     Ok(())
 }
 
@@ -35,11 +29,23 @@ fn hello2() -> Result<()> {
 }
 
 #[test]
-fn hello1_no_newline() -> Result<()> {
+fn hello3() -> Result<()> {
     run(&["Hello  there", "-n"], "tests/expected/hello1.n.txt")
 }
 
 #[test]
-fn hello2_no_newline() -> Result<()> {
+fn hello4() -> Result<()> {
     run(&["-n", "Hello", "there"], "tests/expected/hello2.n.txt")
+}
+
+fn run(args: &[&str], expected_file: &str) -> Result<()> {
+    let expected = std::fs::read_to_string(expected_file)?;
+    let output = Command::cargo_bin("echor")?
+        .args(args)
+        .output()
+        .expect("fail");
+
+    let stdout = String::from_utf8(output.stdout).expect("invalid UTF-8");
+    assert_eq!(stdout, expected);
+    Ok(())
 }
